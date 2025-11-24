@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - OTP Encrypted</title>
+    <meta name="description" content="Hospital Management System with One-Time Pad encryption for secure data handling">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landingPage" class="page active">
+        <header class="hero">
+            <h1>City General Hospital</h1>
+            <p class="tagline">Advanced Healthcare with Secure Data Management</p>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>24/7 Emergency Care</h3>
+                    <p>Round-the-clock medical services</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Expert Doctors</h3>
+                    <p>Specialized healthcare professionals</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Modern Facilities</h3>
+                    <p>State-of-the-art medical equipment</p>
+                </div>
+            </div>
+            <div class="auth-buttons">
+                <button onclick="showLoginPage()" class="btn btn-primary">Login</button>
+                <button onclick="showSignupPage()" class="btn btn-secondary">Sign Up</button>
+            </div>
+        </header>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="page">
+        <div class="auth-container">
+            <h2>Login to Hospital System</h2>
+            <div class="role-selector">
+                <button onclick="selectRole('admin')" class="role-btn" id="adminRoleBtn">Admin</button>
+                <button onclick="selectRole('doctor')" class="role-btn" id="doctorRoleBtn">Doctor</button>
+                <button onclick="selectRole('patient')" class="role-btn" id="patientRoleBtn">Patient</button>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" onclick="showLandingPage()" class="btn btn-secondary">Back</button>
+            </form>
+            <p class="hint">Admin credentials: username: <strong>admin</strong>, password: <strong>admin123</strong></p>
+        </div>
+    </div>
+
+    <!-- Signup Page -->
+    <div id="signupPage" class="page">
+        <div class="auth-container">
+            <h2>Sign Up</h2>
+            <div class="role-selector">
+                <button onclick="selectSignupRole('doctor')" class="role-btn" id="signupDoctorBtn">Doctor</button>
+                <button onclick="selectSignupRole('patient')" class="role-btn" id="signupPatientBtn">Patient</button>
+            </div>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <input type="text" id="signupUsername" placeholder="Username" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <div id="doctorSpecificFields" style="display: none;">
+                    <input type="text" id="specialization" placeholder="Specialization">
+                    <input type="number" id="salary" placeholder="Salary (Optional)">
+                </div>
+                <div id="patientSpecificFields" style="display: none;">
+                    <input type="number" id="age" placeholder="Age">
+                    <input type="tel" id="phone" placeholder="Phone">
+                    <select id="bloodGroup">
+                        <option value="">Select Blood Group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="button" onclick="showLandingPage()" class="btn btn-secondary">Back</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="page dashboard">
+        <nav class="navbar">
+            <h2>Admin Dashboard</h2>
+            <button onclick="logout()" class="btn btn-secondary">Logout</button>
+        </nav>
+        <div class="dashboard-tabs">
+            <button onclick="showTab('patients')" class="tab-btn active" id="patientsTab">Patients</button>
+            <button onclick="showTab('doctors')" class="tab-btn" id="doctorsTab">Doctors</button>
+            <button onclick="showTab('appointments')" class="tab-btn" id="appointmentsTab">Appointments</button>
+            <button onclick="showTab('billing')" class="tab-btn" id="billingTab">Billing</button>
+            <button onclick="showTab('encryption')" class="tab-btn" id="encryptionTab">OTP Demo</button>
+        </div>
+        
+        <!-- Patients Tab -->
+        <div id="patientsContent" class="tab-content active">
+            <h3>Patient Management</h3>
+            <button onclick="showAddPatientForm()" class="btn btn-primary">Add New Patient</button>
+            <div id="addPatientForm" style="display: none;" class="form-container">
+                <h4>Add Patient</h4>
+                <input type="text" id="patientName" placeholder="Full Name" required>
+                <input type="number" id="patientAge" placeholder="Age" required>
+                <input type="tel" id="patientPhone" placeholder="Phone" required>
+                <select id="patientBloodGroup" required>
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+                <input type="text" id="patientSymptoms" placeholder="Symptoms">
+                <select id="assignedDoctor">
+                    <option value="">Assign Doctor</option>
+                </select>
+                <button onclick="addPatient()" class="btn btn-primary">Add Patient</button>
+                <button onclick="hideAddPatientForm()" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="patientsList" class="data-list"></div>
+        </div>
+
+        <!-- Doctors Tab -->
+        <div id="doctorsContent" class="tab-content">
+            <h3>Doctor Management</h3>
+            <button onclick="showAddDoctorForm()" class="btn btn-primary">Add New Doctor</button>
+            <div id="addDoctorForm" style="display: none;" class="form-container">
+                <h4>Add Doctor</h4>
+                <input type="text" id="doctorName" placeholder="Full Name" required>
+                <input type="text" id="doctorSpecialization" placeholder="Specialization" required>
+                <select id="doctorAvailability" required>
+                    <option value="Available">Available</option>
+                    <option value="Busy">Busy</option>
+                    <option value="On Leave">On Leave</option>
+                </select>
+                <input type="number" id="doctorSalary" placeholder="Salary (Optional)">
+                <button onclick="addDoctor()" class="btn btn-primary">Add Doctor</button>
+                <button onclick="hideAddDoctorForm()" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="doctorsList" class="data-list"></div>
+        </div>
+
+        <!-- Appointments Tab -->
+        <div id="appointmentsContent" class="tab-content">
+            <h3>Appointment Scheduling</h3>
+            <button onclick="showBookAppointmentForm()" class="btn btn-primary">Book Appointment</button>
+            <input type="text" id="searchAppointment" placeholder="Search appointments..." onkeyup="searchAppointments()">
+            <div id="bookAppointmentForm" style="display: none;" class="form-container">
+                <h4>Book Appointment</h4>
+                <select id="appointmentPatient" required>
+                    <option value="">Select Patient</option>
+                </select>
+                <select id="appointmentDoctor" required>
+                    <option value="">Select Doctor</option>
+                </select>
+                <input type="date" id="appointmentDate" required>
+                <input type="time" id="appointmentTime" required>
+                <select id="appointmentStatus">
+                    <option value="pending">Pending</option>
+                    <option value="checked">Checked</option>
+                    <option value="complete">Complete</option>
+                </select>
+                <button onclick="bookAppointment()" class="btn btn-primary">Book</button>
+                <button onclick="hideBookAppointmentForm()" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="appointmentsList" class="data-list"></div>
+        </div>
+
+        <!-- Billing Tab -->
+        <div id="billingContent" class="tab-content">
+            <h3>Billing Management</h3>
+            <button onclick="showCreateBillForm()" class="btn btn-primary">Create New Bill</button>
+            <div id="createBillForm" style="display: none;" class="form-container">
+                <h4>Create Bill</h4>
+                <select id="billPatient" required>
+                    <option value="">Select Patient</option>
+                </select>
+                <div class="bill-services">
+                    <h5>Services</h5>
+                    <div class="service-item">
+                        <label>Consultation Fee:</label>
+                        <input type="number" id="consultationFee" value="0" onchange="calculateTotal()">
+                    </div>
+                    <div class="service-item">
+                        <label>Tests:</label>
+                        <input type="number" id="testsFee" value="0" onchange="calculateTotal()">
+                    </div>
+                    <div class="service-item">
+                        <label>Room Charge:</label>
+                        <input type="number" id="roomCharge" value="0" onchange="calculateTotal()">
+                    </div>
+                    <div class="service-item">
+                        <label>Other:</label>
+                        <input type="number" id="otherCharges" value="0" onchange="calculateTotal()">
+                    </div>
+                    <div class="total">
+                        <strong>Total: $<span id="billTotal">0</span></strong>
+                    </div>
+                </div>
+                <button onclick="createBill()" class="btn btn-primary">Create Bill</button>
+                <button onclick="hideCreateBillForm()" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="billsList" class="data-list"></div>
+        </div>
+
+        <!-- OTP Encryption Demo Tab -->
+        <div id="encryptionContent" class="tab-content">
+            <h3>One-Time Pad Encryption Demo</h3>
+            <div class="encryption-info">
+                <h4>How OTP is Used in This System:</h4>
+                <ul>
+                    <li><strong>Password Storage:</strong> All user passwords are encrypted using OTP before storing in session memory</li>
+                    <li><strong>Data Protection:</strong> Sensitive patient and doctor information is encrypted</li>
+                    <li><strong>Key Generation:</strong> Random keys equal to message length are generated for each encryption</li>
+                    <li><strong>Perfect Security:</strong> OTP provides theoretically unbreakable encryption when used correctly</li>
+                    <li><strong>Session-Based:</strong> All encrypted data and keys exist only during the browser session</li>
+                </ul>
+            </div>
+            <div class="form-container">
+                <h4>Try OTP Encryption</h4>
+                <input type="text" id="plaintext" placeholder="Enter text to encrypt">
+                <button onclick="demoEncrypt()" class="btn btn-primary">Encrypt</button>
+                <div id="encryptionResult" class="result-box"></div>
+                <input type="text" id="ciphertext" placeholder="Enter ciphertext to decrypt">
+                <input type="text" id="decryptKey" placeholder="Enter key">
+                <button onclick="demoDecrypt()" class="btn btn-primary">Decrypt</button>
+                <div id="decryptionResult" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor Dashboard -->
+    <div id="doctorDashboard" class="page dashboard">
+        <nav class="navbar">
+            <h2>Doctor Dashboard</h2>
+            <button onclick="logout()" class="btn btn-secondary">Logout</button>
+        </nav>
+        <div class="dashboard-tabs">
+            <button onclick="showDoctorTab('myAppointments')" class="tab-btn active">My Appointments</button>
+            <button onclick="showDoctorTab('myPatients')" class="tab-btn">My Patients</button>
+        </div>
+        <div id="myAppointmentsContent" class="tab-content active">
+            <h3>My Appointments</h3>
+            <div id="doctorAppointmentsList" class="data-list"></div>
+        </div>
+        <div id="myPatientsContent" class="tab-content">
+            <h3>My Patients</h3>
+            <div id="doctorPatientsList" class="data-list"></div>
+        </div>
+    </div>
+
+    <!-- Patient Dashboard -->
+    <div id="patientDashboard" class="page dashboard">
+        <nav class="navbar">
+            <h2>Patient Dashboard</h2>
+            <button onclick="logout()" class="btn btn-secondary">Logout</button>
+        </nav>
+        <div class="dashboard-tabs">
+            <button onclick="showPatientTab('myInfo')" class="tab-btn active">My Information</button>
+            <button onclick="showPatientTab('myAppointments')" class="tab-btn">My Appointments</button>
+            <button onclick="showPatientTab('myBills')" class="tab-btn">My Bills</button>
+        </div>
+        <div id="myInfoContent" class="tab-content active">
+            <h3>My Information</h3>
+            <div id="patientInfo" class="data-list"></div>
+        </div>
+        <div id="patientAppointmentsContent" class="tab-content">
+            <h3>My Appointments</h3>
+            <div id="patientAppointmentsList" class="data-list"></div>
+        </div>
+        <div id="myBillsContent" class="tab-content">
+            <h3>My Bills</h3>
+            <div id="patientBillsList" class="data-list"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
