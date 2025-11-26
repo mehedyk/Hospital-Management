@@ -1,3 +1,4 @@
+<style>
 * {
     margin: 0;
     padding: 0;
@@ -97,7 +98,7 @@ body {
 
 /* Buttons */
 .btn {
-    padding: 14px 32px;
+    padding: 16px 32px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -108,56 +109,125 @@ body {
 }
 
 .btn-primary {
+    background: #a8e6cf;
+    color: #2d4a3e;
+}
+
+.btn-primary:hover {
+    background: #8fd4b8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(168, 230, 207, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.5);
+    transform: translateY(-2px);
+}
+
+/* Auth page specific button styles */
+.auth-container .btn-primary {
+    background: #a8e6cf;
+    color: #2d4a3e;
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 18px;
+}
+
+.auth-container .btn-secondary {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    color: white;
+    width: 100%;
+}
+
+/* Dashboard buttons keep medical blue */
+.dashboard .btn-primary {
     background: #2c5f7c;
     color: white;
 }
 
-.btn-primary:hover {
+.dashboard .btn-primary:hover {
     background: #1a3d52;
-    transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(44, 95, 124, 0.3);
 }
 
-.btn-secondary {
+.dashboard .btn-secondary {
     background: #7fa9bb;
     color: white;
+    border: none;
 }
 
-.btn-secondary:hover {
+.dashboard .btn-secondary:hover {
     background: #5a8599;
-    transform: translateY(-2px);
 }
 
 /* Auth Container */
 .auth-container {
-    max-width: 450px;
-    margin: 80px auto;
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(44, 95, 124, 0.2);
-    border-top: 5px solid #2c5f7c;
+    max-width: 100%;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #a8e6cf 0%, #4a7c59 50%, #2d4a3e 100%);
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><circle cx="100" cy="150" r="80" fill="%23fff" opacity="0.1"/><path d="M 50 500 Q 100 400 150 500 T 250 500" stroke="%23fff" fill="none" opacity="0.1" stroke-width="2"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.auth-form-wrapper {
+    background: rgba(44, 95, 124, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 60px 50px;
+    width: 45%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
 }
 
 .auth-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #2c5f7c;
-    font-size: 1.8rem;
+    text-align: left;
+    margin-bottom: 40px;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .role-selector {
     display: flex;
     gap: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .role-btn {
     flex: 1;
     padding: 12px;
-    border: 2px solid #d1dfe6;
-    background: white;
-    color: #5a6c7d;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: white;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -165,54 +235,62 @@ body {
 }
 
 .role-btn.active {
-    background: #2c5f7c;
-    color: white;
-    border-color: #2c5f7c;
-    box-shadow: 0 4px 12px rgba(44, 95, 124, 0.2);
+    background: rgba(255,255,255,0.25);
+    border-color: white;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.2);
 }
 
 .role-btn:hover {
-    border-color: #2c5f7c;
-    background: #f0f7fa;
-}
-
-.role-btn.active:hover {
-    background: #1a3d52;
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.5);
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
 }
 
 input, select, textarea {
-    padding: 14px;
-    border: 2px solid #d1dfe6;
+    padding: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
     border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
-    background: #f8fafb;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+input::placeholder, select, textarea::placeholder {
+    color: rgba(255,255,255,0.7);
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: #2c5f7c;
-    background: white;
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.2);
+}
+
+select option {
+    background: #2c5f7c;
+    color: white;
 }
 
 .hint {
     text-align: center;
-    color: #7fa9bb;
+    color: rgba(255,255,255,0.8);
     font-size: 0.9rem;
-    margin-top: 15px;
-    padding: 12px;
-    background: #f0f7fa;
+    margin-top: 20px;
+    padding: 14px;
+    background: rgba(255,255,255,0.1);
     border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .hint strong {
-    color: #2c5f7c;
+    color: white;
+    font-weight: 700;
 }
 
 /* Dashboard */
@@ -505,7 +583,27 @@ input:focus, select:focus, textarea:focus {
     }
     
     .auth-container {
-        margin: 40px 20px;
-        padding: 30px 20px;
+        margin: 0;
+        padding: 40px 20px;
+        flex-direction: column;
+    }
+    
+    .auth-form-wrapper {
+        width: 100%;
+        min-height: auto;
+        padding: 40px 30px;
+    }
+    
+    .auth-container h2 {
+        font-size: 2rem;
+    }
+    
+    .auth-container::before {
+        width: 100%;
+        height: 30%;
+        top: auto;
+        bottom: 0;
     }
 }
+    </style>
+    <script src="script.js"></script>
