@@ -1,3 +1,4 @@
+<style>
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +7,9 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #25a750 0%, #23452d 100%);
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e7f0 100%);
     min-height: 100vh;
-    color: #333;
+    color: #2c3e50;
 }
 
 .page {
@@ -35,19 +36,23 @@ body {
 .hero {
     text-align: center;
     padding: 60px 20px;
+    background: linear-gradient(135deg, #2c5f7c 0%, #1a3d52 100%);
     color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-weight: 600;
 }
 
 .tagline {
     font-size: 1.2rem;
     margin-bottom: 40px;
-    opacity: 0.9;
+    opacity: 0.95;
+    color: #e8f4f8;
 }
 
 .features {
@@ -59,25 +64,29 @@ body {
 }
 
 .feature-card {
-    background: rgba(225, 225, 11, 0.95);
+    background: white;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(44, 95, 124, 0.15);
     max-width: 280px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #2c5f7c;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(44, 95, 124, 0.25);
 }
 
 .feature-card h3 {
-    color: #020202;
+    color: #2c5f7c;
     margin-bottom: 10px;
+    font-size: 1.3rem;
 }
 
 .feature-card p {
-    color: #0008fa;
+    color: #5a6c7d;
+    line-height: 1.6;
 }
 
 .auth-buttons {
@@ -89,120 +98,143 @@ body {
 
 /* Buttons */
 .btn {
-    padding: 12px 30px;
+    padding: 14px 32px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .btn-primary {
-    background: #2a0a9a;
-    color: rgb(244, 244, 244);
+    background: #2c5f7c;
+    color: white;
 }
 
 .btn-primary:hover {
-    background: #000000;
+    background: #1a3d52;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(3, 112, 245, 0.4);
+    box-shadow: 0 6px 16px rgba(44, 95, 124, 0.3);
 }
 
 .btn-secondary {
-    background: #13e708;
-    color: #ececec;
+    background: #7fa9bb;
+    color: white;
 }
 
 .btn-secondary:hover {
-    background: #dc0000;
+    background: #5a8599;
+    transform: translateY(-2px);
 }
 
 /* Auth Container */
 .auth-container {
-    max-width: 400px;
+    max-width: 450px;
     margin: 80px auto;
-    background: rgb(247, 247, 247);
+    background: white;
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(5, 253, 112, 0.922);
+    box-shadow: 0 10px 40px rgba(44, 95, 124, 0.2);
+    border-top: 5px solid #2c5f7c;
 }
 
 .auth-container h2 {
     text-align: center;
     margin-bottom: 30px;
-    color: #000609;
+    color: #2c5f7c;
+    font-size: 1.8rem;
 }
 
 .role-selector {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .role-btn {
     flex: 1;
-    padding: 10px;
-    border: 2px solid #0cdf6b;
-    background: rgb(245, 243, 243);
+    padding: 12px;
+    border: 2px solid #d1dfe6;
+    background: white;
+    color: #5a6c7d;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 .role-btn.active {
-    background: #0eb2f3;
-    color: rgb(0, 0, 0);
-    border-color: #1c2652;
+    background: #2c5f7c;
+    color: white;
+    border-color: #2c5f7c;
+    box-shadow: 0 4px 12px rgba(44, 95, 124, 0.2);
 }
 
 .role-btn:hover {
-    border-color: #2844c2;
+    border-color: #2c5f7c;
+    background: #f0f7fa;
+}
+
+.role-btn.active:hover {
+    background: #1a3d52;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
 input, select, textarea {
-    padding: 12px;
-    border: 2px solid #ddd;
+    padding: 14px;
+    border: 2px solid #d1dfe6;
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    background: #f8fafb;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #2c5f7c;
+    background: white;
 }
 
 .hint {
     text-align: center;
-    color: #666;
+    color: #7fa9bb;
     font-size: 0.9rem;
     margin-top: 15px;
+    padding: 12px;
+    background: #f0f7fa;
+    border-radius: 8px;
+}
+
+.hint strong {
+    color: #2c5f7c;
 }
 
 /* Dashboard */
 .dashboard {
-    background: #f5f5f5;
+    background: #f0f4f8;
     min-height: 100vh;
 }
 
 .navbar {
     background: white;
-    padding: 20px 40px;
+    padding: 24px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 12px rgba(44, 95, 124, 0.1);
+    border-bottom: 3px solid #2c5f7c;
 }
 
 .navbar h2 {
-    color: #1031c6;
+    color: #2c5f7c;
+    font-size: 1.8rem;
 }
 
 .dashboard-tabs {
@@ -210,27 +242,30 @@ input:focus, select:focus, textarea:focus {
     padding: 0 40px;
     display: flex;
     gap: 10px;
-    border-bottom: 2px solid #f0f0f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .tab-btn {
-    padding: 15px 25px;
+    padding: 16px 28px;
     background: none;
     border: none;
     border-bottom: 3px solid transparent;
     cursor: pointer;
     font-size: 1rem;
-    color: #666;
+    color: #5a6c7d;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .tab-btn.active {
-    color: #667eea;
-    border-bottom-color: #667eea;
+    color: #2c5f7c;
+    border-bottom-color: #2c5f7c;
+    font-weight: 600;
 }
 
 .tab-btn:hover {
-    color: #667eea;
+    color: #2c5f7c;
+    background: #f8fafb;
 }
 
 .tab-content {
@@ -243,22 +278,27 @@ input:focus, select:focus, textarea:focus {
 }
 
 .tab-content h3 {
-    color: #667eea;
-    margin-bottom: 20px;
+    color: #2c5f7c;
+    margin-bottom: 24px;
+    font-size: 1.6rem;
+    border-bottom: 2px solid #d1dfe6;
+    padding-bottom: 12px;
 }
 
 /* Forms in Dashboard */
 .form-container {
     background: white;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 32px;
+    border-radius: 12px;
     margin: 20px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px rgba(44, 95, 124, 0.1);
+    border-left: 4px solid #2c5f7c;
 }
 
 .form-container h4 {
     margin-bottom: 20px;
-    color: #667eea;
+    color: #2c5f7c;
+    font-size: 1.3rem;
 }
 
 /* Data Lists */
@@ -270,58 +310,68 @@ input:focus, select:focus, textarea:focus {
 
 .data-card {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(44, 95, 124, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #7fa9bb;
 }
 
 .data-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 24px rgba(44, 95, 124, 0.15);
+    border-left-color: #2c5f7c;
 }
 
 .data-card h4 {
-    color: #667eea;
-    margin-bottom: 10px;
+    color: #2c5f7c;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
 }
 
 .data-card p {
-    margin: 5px 0;
-    color: #666;
+    margin: 8px 0;
+    color: #5a6c7d;
+    line-height: 1.6;
 }
 
 .data-card .badge {
     display: inline-block;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
     margin-top: 10px;
+    font-weight: 600;
 }
 
 .badge.pending {
-    background: #ffd700;
-    color: #333;
+    background: #ffeaa7;
+    color: #856404;
 }
 
 .badge.checked {
-    background: #4CAF50;
-    color: white;
+    background: #a8e6cf;
+    color: #155724;
 }
 
 .badge.complete {
-    background: #2196F3;
-    color: white;
+    background: #74b9ff;
+    color: #004085;
 }
 
 .badge.available {
-    background: #4CAF50;
-    color: white;
+    background: #a8e6cf;
+    color: #155724;
 }
 
 .badge.busy {
-    background: #ff9800;
-    color: white;
+    background: #ffeaa7;
+    color: #856404;
+}
+
+.badge.onleave {
+    background: #dfe6e9;
+    color: #2d3436;
 }
 
 /* Billing */
@@ -333,13 +383,13 @@ input:focus, select:focus, textarea:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 12px 0;
+    border-bottom: 1px solid #e8eff3;
 }
 
 .service-item label {
     font-weight: 600;
-    color: #666;
+    color: #5a6c7d;
 }
 
 .service-item input {
@@ -348,67 +398,79 @@ input:focus, select:focus, textarea:focus {
 
 .total {
     margin-top: 20px;
-    padding: 15px;
-    background: #f0f0f0;
+    padding: 18px;
+    background: #e8f4f8;
     border-radius: 8px;
     text-align: right;
-    font-size: 1.2rem;
-    color: #667eea;
+    font-size: 1.3rem;
+    color: #2c5f7c;
+    border: 2px solid #d1dfe6;
 }
 
 /* Encryption Info */
 .encryption-info {
     background: white;
-    padding: 30px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(44, 95, 124, 0.1);
+    border-left: 4px solid #2c5f7c;
 }
 
 .encryption-info h4 {
-    color: #667eea;
-    margin-bottom: 15px;
+    color: #2c5f7c;
+    margin-bottom: 18px;
+    font-size: 1.3rem;
 }
 
 .encryption-info ul {
     list-style-position: inside;
-    color: #666;
+    color: #5a6c7d;
     line-height: 1.8;
 }
 
 .encryption-info li {
-    margin: 10px 0;
+    margin: 12px 0;
+    padding-left: 8px;
+}
+
+.encryption-info strong {
+    color: #2c5f7c;
 }
 
 .result-box {
-    background: #f9f9f9;
-    padding: 15px;
+    background: #f8fafb;
+    padding: 18px;
     border-radius: 8px;
     margin-top: 15px;
-    min-height: 60px;
+    min-height: 70px;
     word-break: break-all;
-    color: #333;
+    color: #2c3e50;
+    border: 2px solid #d1dfe6;
 }
 
-/* Print Styles */
-.print-bill {
-    display: none;
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 24px;
+    background: white;
+    margin-top: 40px;
+    border-top: 3px solid #2c5f7c;
+    box-shadow: 0 -2px 12px rgba(44, 95, 124, 0.1);
 }
 
-@media print {
-    body * {
-        visibility: hidden;
-    }
-    .print-bill, .print-bill * {
-        visibility: visible;
-    }
-    .print-bill {
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: block;
-        width: 100%;
-    }
+.footer p {
+    color: #5a6c7d;
+}
+
+.footer a {
+    color: #2c5f7c;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
 
 /* Responsive */
@@ -442,4 +504,11 @@ input:focus, select:focus, textarea:focus {
     .hero h1 {
         font-size: 2rem;
     }
+    
+    .auth-container {
+        margin: 40px 20px;
+        padding: 30px 20px;
+    }
 }
+    </style>
+    <script src="script.js"></script>
