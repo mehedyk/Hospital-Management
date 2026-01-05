@@ -293,7 +293,10 @@
     </div>
 
     <footer class="footer" style=" align:center; padding: 20px; background: #f0f0f0; margin-top: 40px; align-self: center;">
-        <p style="align-items:center">A <a href="https://github.com/mehedyk" target="_blank" rel="noopener noreferrer">mehedyk</a> product. © 2025 All rights reserved.</p>
+        <p style="align-items:center">A <a href="https://github.com/mehedyk" target="_blank" rel="noopener noreferrer">mehedyk</a> product. All rights reserved. &copy; <span id="currentYear"></span>.</p>
+        <script>
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        </script>
     </footer>
 
     <script src="script.js"></script>

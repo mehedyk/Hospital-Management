@@ -772,6 +772,6 @@ in the Software without restriction...
 
 ---
 
-© 2025 mehedyk. All Rights Reserved.
+© 2026 mehedyk. All Rights Reserved.
 
 </div>
